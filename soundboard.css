@@ -48,7 +48,6 @@ figure {
    line-height:20px;
    @include transition(box-shadow .25s ease);
    &:after{
-      content:'';
       display:inline-block;
       color: #94a657;
       background:#fff;
@@ -64,7 +63,6 @@ figure {
    &.playing{
        &:after{
          padding:3px;
-         content:'';
       }
    }
 }
