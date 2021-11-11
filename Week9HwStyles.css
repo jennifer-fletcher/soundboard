@@ -1,0 +1,147 @@
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  background: pink;
+}
+
+header {
+  background: #55296c;
+  height: 80px;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  line-height: 80px;
+  margin: 0;
+}
+
+section {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+article {
+  padding: 10px;
+  margin: 10px;
+  background: #d0b0e1;
+  flex: 300px;
+  overflow: hidden;
+}
+
+/*--------------------------------------------------------------
+first set of code from https://tympanus.net/codrops/2011/11/02/original-hover-effects-with-css3/
+--------------------------------------------------------------*/
+
+.view {
+    margin: 10px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+    background: #fff url(../images/bgimg.jpg) no-repeat center center
+}
+.view .mask, .view .content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0
+}
+.view img {
+    display: block;
+    position: relative
+}
+.view h1 {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 20px;
+    padding: 10px;
+    margin: 10px 0 0 0
+}
+.view p {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 24px;
+    position: relative;
+    color: #fff;
+    padding: 10px 20px 20px;
+    text-align: center
+}
+.view a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000
+}
+.view a.info:hover {
+    box-shadow: 0 0 5px #000
+}
+
+/*--------------------------------------------------------------
+second set of code from https://tympanus.net/codrops/2011/11/02/original-hover-effects-with-css3/
+for hover effect 1
+--------------------------------------------------------------*/
+
+@keyframes blueToPurple {
+    from {background-color: rgba(104, 22, 167, 0.68);}
+    to {background-color: rgba(22, 94, 167, 0.68);}
+}
+
+.view-first img {
+    transition: all 0.2s linear;
+}
+
+.view-first .mask {
+  opacity: 0;
+  animation-name: blueToPurple;
+  animation-duration: 2.5s;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+ transition: all 0.4s ease-in-out;
+}
+
+
+.view-first h1 {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+.view-first p {
+    transform: translateY(100px);
+    opacity: 0;
+	transition: all 0.2s linear;
+}
+.view-first a.info{
+    opacity: 0;
+	transition: all 0.2s ease-in-out;
+}
+
+.view-first:hover img {
+	transform: scale(1.1);
+}
+.view-first:hover .mask {
+	opacity: 1;
+}
+.view-first:hover h1,
+.view-first:hover p,
+.view-first:hover a.info {
+    opacity: 1;
+    transform: translateY(0px);
+}
+.view-first:hover p {
+    transition-delay: 0.1s;
+}
+.view-first:hover a.info {
+    transition-delay: 0.2s;
+}
