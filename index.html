@@ -8,102 +8,97 @@
     <link rel="shortcut icon" href="img/favicon.png" />
     <link rel='stylesheet' href='Week9HwStyles.css'/>
 
-    <title>Week 9 Homework</title>
+    <title>You Suck If You Lose</title>
 
 
   </head>
   <body>
     <header>
-      <h1>Week 9 Homework: Hover Photography Grid</h1>
+      <h1>You Suck If You Lose: Sound Board</h1>
     </header>
 
     <section>
-      <article>
-      <div class="view view-first">
-        <img src="img/hw9/flower1.jpg" style="width:100%">
-        <div class="mask">
-          <h1>Image 1</h1>
-          <p> I took this picture at the Cherry Blossom Festival at the Brooklyn Botanical Garden
-          in 2018 </p>
-        </div>
-        </div>
-      </div> 
+<!--
+    <article>
+          <h1>Rain Noise</h1>
+          <figure>
+              <audio
+                controls
+                src="audio/rain.mp3">
+              </audio>
+          </figure>
       </article>
+-->
 
-      <article>
-        <div class="view view-first">
-          <img src="img/hw9/flower12.jpg" style="width:100%">
-          <div class="mask">
-            <h1>Image 2</h1>
-            <p>Bumblebee resting on a flower at Gantry State Park in LIC</p>
-          </div>
-        </div>
-        </div>
-      </article>
+    <article>
+      <audio id="nyan" src="audio/rain.mp3" preload="metadata" type="audio/mpeg">
+      </audio>
+      <a class="btn" id="nyan-btn">play / pause</a>
+    </article>
 
-      <article>
-      <div class="view view-first">
-        <img src="img/hw9/flower4.jpg" style="width:100%">
-        <div class="mask">
-          <h1>Image 3</h1>
-          <p>Totoro on a stage at the Cherry Blossom Festival at the Brooklyn Botanical Garden</p>
-        </div>
-      </div>
-      </article>
+    <article>
+      <audio id="nyan" src="audio/buzzer.mp3" preload="metadata" type="audio/mpeg">
+      </audio>
+      <a class="btn" id="nyan-btn">play / pause</a>
+    </article>
 
-      <article>
-      <div class="view view-first">
-        <img src="img/hw9/flower3.jpg" style="width:100%">
-        <div class="mask">
-          <h1>Image 4</h1>
-          <p>Japanese Tree Peony at the Brooklyn Botanical Garden</p>
-        </div>
-      </div>
-      </article>
 
-      <article>
-      <div class="view view-first">
-        <img src="img/hw9/flower6.jpg" style="width:100%">
-        <div class="mask">
-          <h1>Image 5</h1>
-          <p>Neighborhood flower after a day of rain</p>
-        </div>
-      </div>
-      </article>
 
-      <article>
-      <div class="view view-first">
-        <img src="img/hw9/flower2.jpg" style="width:100%">
-        <div class="mask">
-          <h1>Image 6</h1>
-          <p>Cherry Blossom with a lady sitting underneath </p>
-        </div>
-      </div>
-      </article>
+  </section>
 
-      <article>
-      <div class="view view-first">
-        <img src="img/hw9/flower7.jpg" style="width:100%">
-        <div class="mask">
-          <h1>Image 7</h1>
-          <p>The view from Battery Park</p>
-        </div>
-      </div>
-      </article>
 
-      <article>
-      <div class="view view-first">
-          <img src="img/hw9/flower10.jpg" style="width:100%">
-          <div class="mask">
-            <h1>Image 8</h1>
-            <p> Free Rose Friday from local shop </p>
-          </div>
-      </div>
-      </article>
-    </section>
-    <br>
-    <center>
-    <a href="index.html"> Go Back to Main Page </a>
-    </center>
+<script>
+  var nyan = document.getElementById('nyan');
+  var nyanBtn = document.getElementById('nyan-btn');
+
+function playPause(song){
+   if (song.paused && song.currentTime >= 0 && !song.ended) {
+      song.play();
+   } else {
+      song.pause();
+   }
+}
+
+function reset(btn, song){
+   if(btn.classList.contains('playing')){
+      btn.classList.toggle('playing');
+   }
+   song.pause();
+   song.currentTime = 0;
+}
+
+function progress(btn, song){
+   setTimeout(function(){
+      var end = song.duration;
+      var current = song.currentTime;
+      var percent = current/(end/100);
+      //check if song is at the end
+      if(current==end){
+         reset(btn, song);
+      }
+      //set inset box shadow
+      btn.style.boxShadow = "inset " + btn.offsetWidth * (percent/100) + "px 0px 0px 0px rgba(0,0,0,0.125)"
+      //call function again
+      progress(btn, song);
+   }, 1000);
+}
+
+nyanBtn.addEventListener('click', function(){
+   nyanBtn.classList.toggle('playing');
+   playPause(nyan);
+   progress(nyanBtn, nyan);
+});
+
+
+
+
+
+
+
+
+</script>
   </body>
+
+
+
 </html>
