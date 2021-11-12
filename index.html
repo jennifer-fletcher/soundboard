@@ -20,79 +20,97 @@
     <section>
 <!--
     <article>
-          <h1>Rain Noise</h1>
+          <h1>bonk Noise</h1>
           <figure>
               <audio
                 controls
-                src="audio/rain.mp3">
+                src="audio/bonk.mp3">
               </audio>
           </figure>
       </article>
 -->
 
     <article>
-      <audio id="nyan" src="audio/rain.mp3" preload="metadata" type="audio/mpeg">
+      <audio id="bonk" src="audio/bonk.mp3" preload="metadata" type="audio/mpeg">
       </audio>
-      <a class="btn" id="nyan-btn">play / pause</a>
+      <a class="btn" id="bonk-btn">Bonk</a>
     </article>
 
     <article>
-      <audio id="nyan" src="audio/buzzer.mp3" preload="metadata" type="audio/mpeg">
+      <audio id="buzzer" src="audio/buzzer.mp3" preload="metadata" type="audio/mpeg">
       </audio>
-      <a class="btn" id="nyan-btn">play / pause</a>
+      <a class="btn" id="buzzer-btn">Buzzer</a>
     </article>
 
-
+    <article>
+       <audio id="laugh" src="audio/laugh.mp3" preload="metadata" type="audio/mpeg">
+       </audio>
+       <a class="btn" id="laugh-btn">Laugh</a>
+       </article>
 
   </section>
 
 
 <script>
-  var nyan = document.getElementById('nyan');
-  var nyanBtn = document.getElementById('nyan-btn');
+  var bonk = document.getElementById('bonk');
+  var bonkBtn = document.getElementById('bonk-btn');
 
-function playPause(song){
-   if (song.paused && song.currentTime >= 0 && !song.ended) {
-      song.play();
-   } else {
-      song.pause();
-   }
-}
+  var buzzer = document.getElementById('buzzer');
+  var buzzerBtn = document.getElementById('buzzer-btn');
 
-function reset(btn, song){
-   if(btn.classList.contains('playing')){
-      btn.classList.toggle('playing');
-   }
-   song.pause();
-   song.currentTime = 0;
-}
-
-function progress(btn, song){
-   setTimeout(function(){
-      var end = song.duration;
-      var current = song.currentTime;
-      var percent = current/(end/100);
-      //check if song is at the end
-      if(current==end){
-         reset(btn, song);
-      }
-      //set inset box shadow
-      btn.style.boxShadow = "inset " + btn.offsetWidth * (percent/100) + "px 0px 0px 0px rgba(0,0,0,0.125)"
-      //call function again
-      progress(btn, song);
-   }, 1000);
-}
-
-nyanBtn.addEventListener('click', function(){
-   nyanBtn.classList.toggle('playing');
-   playPause(nyan);
-   progress(nyanBtn, nyan);
-});
+  var laugh = document.getElementById('laugh');
+  var laughBtn = document.getElementById('laugh-btn');
 
 
+  function playPause(song){
+     if (song.paused && song.currentTime >= 0 && !song.ended) {
+        song.play();
+     } else {
+        song.pause();
+     }
+  }
 
+  function reset(btn, song){
+     if(btn.classList.contains('playing')){
+        btn.classList.toggle('playing');
+     }
+     song.pause();
+     song.currentTime = 0;
+  }
 
+  function progress(btn, song){
+     setTimeout(function(){
+        var end = song.duration;
+        var current = song.currentTime;
+        var percent = current/(end/100);
+        //check if song is at the end
+        if(current==end){
+           reset(btn, song);
+        }
+        //set inset box shadow
+        btn.style.boxShadow = "inset " + btn.offsetWidth * (percent/100) + "px 0px 0px 0px rgba(0,0,0,0.125)"
+        //call function again
+        progress(btn, song);
+     }, 1000);
+  }
 
+  bonkBtn.addEventListener('click', function(){
+     bonkBtn.classList.toggle('playing');
+     playPause(bonk);
+     progress(bonkBtn, bonk);
+  });
+
+  buzzerBtn.addEventListener('click', function(){
+     buzzerBtn.classList.toggle('playing');
+     playPause(buzzer);
+     progress(buzzerBtn, buzzer);
+  });
+
+  laughBtn.addEventListener('click', function(){
+     laughBtn.classList.toggle('playing');
+     playPause(laugh);
+     progress(laughBtn, laugh);
+  });
 
 
 
